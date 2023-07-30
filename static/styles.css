@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+
+/* Set a fixed height for the table container and make it scrollable */
+
+.table-container {
+    max-height: 675px; /* Adjust this value as needed */
+    overflow-y: scroll;
+}
+
+
+/* Fix the table header to the top of the container */
+
+thead {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #f2f2f2;
+}
+
+
+/* Set a fixed height for the table header cells */
+th {
+    height: 40px; /* Adjust this value as needed */
+}

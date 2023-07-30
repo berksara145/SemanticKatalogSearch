@@ -1,0 +1,54 @@
+<!doctype html>
+<head>
+    <title>Enocta Katalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<html>
+   <body>
+     <main>
+        <div class="px-4 py-3 my-2">
+            <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/enocta-logo.svg') }}" alt="Enocta Logo" width="192" height="192"/>
+            <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+            <!-- <h1 class="display-8">{{name}}</h1> -->
+            <p class="display-8"><b>Sorunuz</b></p>
+            <p class="display-8">{{name[0]}}</p>
+
+            <p class="display-8"><b>Enocta AI Cevabı</b></p>
+            <p class="display-8">{{name[1]}}</p>
+
+            <p class="display-8"><b>Enocta AI Cevabı ingilizcesi (sesli)  </b></p>
+            <p class="display-8">{{name[5]}}</p>
+
+            <audio id="audioPlayer" controls>
+              <source src="{{ url }}" type="audio/wav">
+              Your browser does not support the audio element.
+            </audio> 
+
+            <p class="display-8"><b> aradığınız kriterlerde bir eğitim olmasa da size aşağıdaki eğitimleri önerebilirim  </b></p>
+            <p> </p>
+            <p class="display-8"><b> aradığınız içeriğe anlamsal en yakın eğitim  </b></p>
+            <p class="display-8">{{name[2][0]}}</p>
+            <p class="display-8">{{name[3][0]}}</p>
+            <p class="display-8">Süre: {{name[4][0]}} dakika</p>
+            <p class="display-8">Seviye: {{name[5][0]}}</p>
+            <p class="display-8"><b> aradığınız süreye en yakın eğitim  </b></p>
+            <p class="display-8">{{name[2][1]}}</p>
+            <p class="display-8">{{name[3][1]}}</p>
+            <p class="display-8">Süre: {{name[4][0]}} dakika</p>
+            <p class="display-8">Seviye: {{name[5][0]}}</p>
+            <p class="display-8"><b> aradığınız seviyeye en yakın eğitim  </b></p>
+            <p class="display-8">{{name[2][2]}}</p>
+            <p class="display-8">{{name[3][2]}}</p>
+            <p class="display-8">Süre: {{name[4][0]}} dakika</p>
+            <p class="display-8">Seviye: {{name[5][0]}}</p>
+            
+
+            <p class="fs-5">
+                ---------
+            </p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-4 gap-3">Geri dön</a>
+          </div>
+     </main>      
+   </body>
+</html>

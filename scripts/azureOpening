@@ -1,0 +1,2 @@
+az webapp stop --resource-group AzureWithMongoDB_group --name AzureWithMongoDB
+az webapp start --resource-group AzureWithMongoDB_group --name AzureWithMongoDB

@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Question Logs</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}"> <!-- Link to external CSS file -->
+</head>
+
+<body>
+    <h1>Question Logs</h1>
+    <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th style="padding: 10px;">Date and Time</th>
+                <th style="padding: 10px;">Database To Search</th>
+                <th style="padding: 30px;">Question</th>
+                <th style="padding: 30px;">AI Response</th>
+                <th style="padding: 30px;">Model Name</th>
+                <th style="padding: 10px;">Money($)</th>
+                <th style="padding: 10px;">Total Cost($)</th>
+                <th style="padding: 10px;">egitimheaderArr</th>
+                <th style="padding: 10px;">egitimdescArr</th>
+                <th style="padding: 10px;">içerikDescriptions</th>
+        </thead>
+        _id,question,airesponse,egitimheaderArr,egitimdescArr,similarity_scores,içerikDescriptions
+        <tbody>
+            {% for log in logs %}
+            <tr>                
+                <td style="padding: 10x;">{{ log.timestamp}}</td>
+                <td style="padding: 10px;">{{ log.csvType }}</td>
+                <td style="padding: 30px;">{{ log.question }}</td>
+                <td style="padding: 30px;">{{ log.airesponse }}</td>
+                <td style="padding: 30px;">{{ log.modelName }}</td>
+                <td style="padding: 10px;">{{ log.money }}</td>
+                <td style="padding: 10px;">{{ log.totalCost }}</td>
+                <td style="padding: 10px;">{{ log.egitimheaderArr }}</td>
+                <td style="padding: 10px;">{{ log.egitimdescArr}}</td>
+                <td style="padding: 10px;">{{ log.içerikDescriptions }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

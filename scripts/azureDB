@@ -1,0 +1,3 @@
+az group create --location eastus --name mongoDBRes
+az cosmosdb mongocluster create --cluster-name berkcluster --resource-group mongoDBRes --location eastus --administrator-login berksara --administrator-login-password Bs12341234 --server-version 5.0 --shard-node-tier "M30" --shard-node-ha false --shard-node-disk-size-gb 128 --shard-node-count 1
+az cosmosdb mongocluster firewall rule create --cluster-name berkcluster --resource-group mongoDBRes --rule-name allip --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255

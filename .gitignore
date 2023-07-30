@@ -1,0 +1,8 @@
+.env
+
+scores.txt
+/venv/
+/notes/
+/newCSVs/
+/CSVs_for_33_test/
+/temp/
