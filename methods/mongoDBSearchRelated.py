@@ -11,7 +11,15 @@ from methods.içerikHazirlama import getİçerikDescriptions
 from methods.chromadbDenemesi import queryChroma
 from methods.extract_Info import get_info
 import googletrans.client as c
-load_dotenv()
+
+def loadingEnv():
+    # Get the path to the directory this file is in
+    BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+    # Connect the path with your '.env' file name
+    load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
+    
+loadingEnv()
 
 OPENAI_ORG_ID  = "org-EZyyXoEzlXEW5aYgXath8T1K"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -32,6 +40,9 @@ SOUND_APIKEY = os.getenv("SOUND_APIKEY")
     load_dotenv(os.path.join(BASEDIR, 'configvars.env'))    
     MONGO_CONNECTION_STRING = os.getenv("AZURE_MONGODB_CONNECTION_STRING")
 """
+
+
+
 # verilen metnin ingilizce okunuşunun linkini returnler
 def getSound(text):
 

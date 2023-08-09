@@ -8,15 +8,18 @@ import pandas as pd
 insanların sordukları soruların ve cevapların listesini bir csv dosyasına kaydeder.
 """
 
-MONGO_CONNECTION_STRING = ""
+def loadingEnv():
+    # Get the path to the directory this file is in
+    BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+    # Connect the path with your '.env' file name
+    load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
+    
+loadingEnv()
+
+MONGO_CONNECTION_STRING = os.getenv("MONGO_CONNECTION_STRING")
 DATABASE_ID = "semanticDB"
 COLLECTION_ID_LOGS = "logs"
-
-def LoadEnvVariables():
-    global MONGO_CONNECTION_STRING
-    load_dotenv()    
-    MONGO_CONNECTION_STRING = os.getenv("MONGO_CONNECTION_STRING")
-    print(MONGO_CONNECTION_STRING)
 
 def export_logs_to_csv():
     # Connect to MongoDB

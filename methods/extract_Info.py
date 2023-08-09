@@ -3,6 +3,15 @@ import json
 import openai
 from dotenv import load_dotenv, find_dotenv
 
+def loadingEnv():
+    # Get the path to the directory this file is in
+    BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
+    # Connect the path with your '.env' file name
+    load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
+    
+loadingEnv()
+
 def get_info(
         input: str,
         path: str=None,
@@ -10,8 +19,7 @@ def get_info(
         temperature: float=0.0
     ) -> dict:
 
-    _ = load_dotenv(find_dotenv(filename=path))
-    openai.api_key = os.environ['OPENAI_API_KEY']
+    openai.api_key = os.getenv('OPENAI_API_KEY')
     prompt = get_prompt(input)
 
     response = openai.ChatCompletion.create(
