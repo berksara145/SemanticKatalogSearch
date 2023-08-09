@@ -11,7 +11,7 @@ curosr=connection.cursor()
 # eğitim ve açıklamalarından SQL oluşturuyor
 def createKatalogTime():
     # create the object of csv.reader()
-    data = pd.read_csv("transformed_catalog_data.csv",delimiter=',')
+    data = pd.read_csv("newCSVs/transformed_catalog_data.csv",sep=",")
 
     # 1. create query    
     Table_Query = '''CREATE TABLE if not Exists katalogTime(
@@ -49,7 +49,7 @@ def createKatalogTime():
 # eğitim ve açıklamalarından SQL oluşturuyor
 def createKatalogAciklamaSQL():
     # create the object of csv.reader()
-    data = pd.read_csv("EgitimDesc761.csv",delimiter=',')
+    data = pd.read_csv("newCSVs/EgitimDesc761~.csv",delimiter='~')
 
     # 1. create query    
     Table_Query = '''CREATE TABLE if not Exists katalogAciklama(
@@ -83,10 +83,50 @@ def createKatalogAciklamaSQL():
         curosr.execute(InsertQuery)    # 7. commit changes
 
         print("commited")
+
+def createIcerikAciklamaAllSQL():
+    # create the object of csv.reader()
+    data = pd.read_csv("newCSVs/IcerikKatalogAll.csv",delimiter=';')
+
+    # 1. create query    
+    Table_Query = '''CREATE TABLE if not Exists IceriklerAll(
+    id INT PRIMARY KEY,
+    NAME TEXT,
+    DESC TEXT,
+    egitim TEXT
+    );'''
+
+    # 3. execute table query to create table
+    curosr.execute(Table_Query)
+
+    # 4. pase csv data
+    for i, row in data.iterrows():
+        # skip the first row
+
+        if(type(row[7]) == float):
+            desc=row[1].replace("\"","\'")
+        else:
+            desc=row[7].replace("\"","\'")
+        
+        egitim = row[0]
+        name=row[1].replace("\"","\'")
+        
+        print(i)
+        print(name)
+        print(desc)
+        print(egitim)
+        print("\n")
+
+        # 5. create insert query
+        InsertQuery=f'INSERT INTO IceriklerAll (id, NAME, DESC, egitim) VALUES ("{i + 1}","{name}","{desc}", "{egitim}")'
+        # 6. Execute query
+        curosr.execute(InsertQuery)    # 7. commit changes
+
+        print("commited")
 # eğitim ve içindeki içeriklerden SQL oluşturuyor
 def createIcerikKatalogSQL():
     # create the object of csv.reader()
-    data = pd.read_csv("IcerikKatalog761.csv",delimiter=',')
+    data = pd.read_csv("newCSVs/IcerikKatalog761.csv",delimiter=',')
 
     # 1. create query    
     Table_Query = '''CREATE TABLE if not Exists Icerikler(
@@ -102,10 +142,8 @@ def createIcerikKatalogSQL():
     for i, row in data.iterrows():
         
         #if there isn't any desc NAN then we use the name of it
-        if(type(row[7]) == float):
-            içerikAçıklama=row[1].replace("\"","\'")
-        else:
-            içerikAçıklama=row[7].replace("\"","\'")
+        
+        içerikAçıklama=row[1].replace("\"","\'")
         
         name=row[0].replace("\"","\'")
         
@@ -129,26 +167,29 @@ def createJoinedEgitimWithDesc():
     records = curosr.fetchall()
 
     i = 1
+    count = 0
     for row in records:
+        #print(i)
+        #print("name: ", row[0])
+        #print("desc: ", row[1])
+        
+        count += 1
         print(i)
-        print("name: ", row[0])
-        print("desc: ", row[1])
         print("time: ", row[2])
-        print("level: ", row[3])
-        print("\n")
         i += 1
 
     df = pd.DataFrame(records)
     print(df.head)
     print(df.shape)
-    df.to_csv('EgitimDesc1000.csv', index=False)
+    df.to_csv('EgitimDesc1001.csv', index=False, sep="~")
     print(df.iat[5,0])
+    print(count)
 # ortak eğitimlerden içerik ve ait olduğu eğitimlerin SQL ini oluşturuyor
 def createJoinedIcerikWithDesc():
-    InsertQuery=f'''select v.NAME, v.IcerikAciklama
-    from Icerikler v 
-    inner join (select NAME from
-                katalogAciklama) a  on a.NAME = v.NAME  order by v.NAME'''
+    InsertQuery=f'''select v.NAME, v.DESC
+    from katalogAciklama v 
+    inner join (select distinct egitim from
+                IceriklerAll ) a  on a.egitim = v.NAME  order by v.NAME'''
     curosr.execute(InsertQuery)    # 7. commit changes
     records = curosr.fetchall()
 
@@ -156,14 +197,14 @@ def createJoinedIcerikWithDesc():
     for row in records:
         print(i)
         print("name: ", row[0])
-        print("IcerikAciklama: ", row[1])
+        print("eğitimAçiklama: ", row[1])
         print("\n")
         i += 1
 
     df = pd.DataFrame(records)
     print(df.head)
     print(df.shape)
-    df.to_csv('IcerikKatalog761.csv', index=False)
+    df.to_csv('IcerikKatalog761.csv', index=False, sep="~")
     print(df.iat[5,0])
 
 def trySelectQuery():
@@ -179,13 +220,64 @@ def trySelectQuery():
         print("\n")
         i += 1
 
-"""
-createKatalogAciklamaSQL()
-createKatalogTime()
-createJoinedEgitimWithDesc()
-"""
+def addTimeLevelToIcerik():
+    InsertQuery=f'''select v.NAME, v.IcerikAciklama, a.TIME, a.LEVEL
+    from Icerikler v 
+    inner join (select NAME from
+                katalogTime) a  on a.NAME = v.NAME order by v.NAME'''
 
-#trySelectQuery()
-# 8. close connection
+    curosr.execute(InsertQuery)    # 7. commit changes
+    records = curosr.fetchall()
+
+    i = 1
+    for row in records:
+        print(i)
+        print("name: ", row[0])
+        print("IcerikAciklama: ", row[1])
+        print("\n")
+        i += 1
+
+    df = pd.DataFrame(records)
+    print(df.head)
+    print(df.shape)
+    df.to_csv('newCSVs/IcerikKatalog761v2.csv', index=False)
+
+def EgiitmAciklamaAll():
+    # create the object of csv.reader()
+    data = pd.read_csv("newCSVs/KatalogEgitimAciklama.csv",delimiter=';')
+
+    # 1. create query    
+    Table_Query = '''CREATE TABLE if not Exists katalogAciklama(
+    id INT PRIMARY KEY,
+    NAME TEXT,
+    DESC TEXT
+    );'''
+
+    # 3. execute table query to create table
+    curosr.execute(Table_Query)
+
+    # 4. pase csv data
+    for i, row in data.iterrows():
+        
+        #if there isn't any desc NAN then we use the name of it
+        if(type(row[1]) == float):
+            desc=row[0].replace("\"","\'")
+        else:
+            desc=row[1].replace("\"","\'")
+        
+        name=row[0].replace("\"","\'")
+        
+        # skip the first row
+        print("\n")
+        print(i)
+        print(name)
+        print(desc)
+        
+        
+        InsertQuery=f'INSERT INTO katalogAciklama (id, NAME, DESC) VALUES ("{i + 1}","{name}", "{desc}")'
+        # 6. Execute query
+        curosr.execute(InsertQuery)    # 7. commit changes
+
+createIcerikKatalogSQL()
 
 connection.close()

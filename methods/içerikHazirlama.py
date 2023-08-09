@@ -21,7 +21,7 @@ load_dotenv()
 
 # içerik ve ait olduğu eğitimler ve açıklamalarla dolu büyük tablo
 def readCSV():
-    data = pd.read_csv('IcerikKatalog761.csv',  sep=',')
+    data = pd.read_csv('newCSVs/IcerikKatalog761.csv',  sep=',')
     print(data.head())
     print(data.shape)
     print("read the data \n")
