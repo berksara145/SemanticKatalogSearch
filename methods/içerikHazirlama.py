@@ -4,7 +4,15 @@ from dotenv import load_dotenv
 import openai
 import os
 
+def loadingEnv():
+    # Get the path to the directory this file is in
+    BASEDIR = os.path.abspath(os.path.dirname(__file__))
+    print("BASEDIR: içerik", BASEDIR)
+    BASEDIR = os.path.dirname(BASEDIR)
+    # Connect the path with your '.env' file name
+    load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
 
+loadingEnv()
 
 
 """
@@ -16,15 +24,6 @@ a system to convert the incoming vector result id from içerik to id via tables 
 testing using 12 eğitim with 300 içerik (galiba) and determining if it works good
 google translate integration with api (fuk)
 """
-def loadingEnv():
-    # Get the path to the directory this file is in
-    BASEDIR = os.path.abspath(os.path.dirname(__file__))
-
-    # Connect the path with your '.env' file name
-    load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
-    
-loadingEnv()
-
 
 # içerik ve ait olduğu eğitimler ve açıklamalarla dolu büyük tablo
 def readCSV():

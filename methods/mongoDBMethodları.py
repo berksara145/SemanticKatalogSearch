@@ -5,8 +5,16 @@ import numpy as np
 from dotenv import load_dotenv
 import openai
 from içerikHazirlama import getMatchingArray
+    
+def loadingEnv():
+    # Get the path to the directory this file is in
+    BASEDIR = os.path.abspath(os.path.dirname(__file__))
+    print("BASEDIR: meto", BASEDIR)
+    BASEDIR = os.path.dirname(BASEDIR)
+    # Connect the path with your '.env' file name
+    load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
 
-load_dotenv()
+loadingEnv()
 
 DATABASE_ID = "semanticDB"
 MONGO_CONNECTION_STRING = os.getenv("MONGO_CONNECTION_STRING")

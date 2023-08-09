@@ -11,10 +11,11 @@ insanların sordukları soruların ve cevapların listesini bir csv dosyasına k
 def loadingEnv():
     # Get the path to the directory this file is in
     BASEDIR = os.path.abspath(os.path.dirname(__file__))
-
+    print("BASEDIR: logy", BASEDIR)
+    BASEDIR = os.path.dirname(BASEDIR)
     # Connect the path with your '.env' file name
     load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
-    
+
 loadingEnv()
 
 MONGO_CONNECTION_STRING = os.getenv("MONGO_CONNECTION_STRING")

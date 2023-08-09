@@ -1,15 +1,16 @@
 import os
 import json
 import openai
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 
 def loadingEnv():
     # Get the path to the directory this file is in
     BASEDIR = os.path.abspath(os.path.dirname(__file__))
-
+    print("BASEDIR: info", BASEDIR)
+    BASEDIR = os.path.dirname(BASEDIR)
     # Connect the path with your '.env' file name
     load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
-    
+
 loadingEnv()
 
 def get_info(

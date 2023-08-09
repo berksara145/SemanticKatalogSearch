@@ -17,8 +17,16 @@ from flask import (Flask, redirect, render_template, request,
 from methods.mongoDBSearchRelated import Answer
 from methods.mongoDBSearchRelated import getSound
 
+def loadingEnv():
+    # Get the path to the directory this file is in
+    BASEDIR = os.path.abspath(os.path.dirname(__file__))
+    print("BASEDIR: app ", BASEDIR)
+    # Connect the path with your '.env' file name
+    load_dotenv(os.path.join(BASEDIR, 'configvars.env'))  
+
+loadingEnv()
+
 app = Flask(__name__)
-load_dotenv() # use dotenv to hide sensitive credential as environment variables
 
 def connectToMongoDB():
     # Send a ping to confirm a successful connection
