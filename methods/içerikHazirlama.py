@@ -116,4 +116,4 @@ def getİçerikDescriptions(idArray):
     return matchingİçerikArr
 
 
-data = readCSV()
+#data = readCSV()
