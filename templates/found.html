@@ -36,7 +36,8 @@
           </div>
 
           <script>
-            const array = eval("{{ name | safe }}")
+            var prepared = {{ name | safe }}
+            const array = eval(prepared)
             console.log(array);
             const resultDiv = document.getElementById('results');
 

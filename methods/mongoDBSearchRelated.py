@@ -23,6 +23,15 @@ COLLECTION_ID_LOGS = "logs"
 COLLECTION_ID_CATALOG_DESC = "catalogDesc"
 COLLECTION_ID_MATCHING_TABLE = "matchingTable"
 SOUND_APIKEY = os.getenv("SOUND_APIKEY")
+
+"""def LoadEnvVariables():
+    global MONGO_CONNECTION_STRING
+    # Get the path to the directory this file is in
+    BASEDIR = os.path.abspath(os.path.dirname(__file__))
+    # Connect the path with your '.env' file name
+    load_dotenv(os.path.join(BASEDIR, 'configvars.env'))    
+    MONGO_CONNECTION_STRING = os.getenv("AZURE_MONGODB_CONNECTION_STRING")
+"""
 # verilen metnin ingilizce okunuşunun linkini returnler
 def getSound(text):
 
@@ -302,7 +311,7 @@ def Answer(question):
     
     #similarity_scores = returnSimilarityScores(db,question)
     engAnswer = translateApi(question)
-    result = [question.replace("'",""), airesponse, egitimheaderArr, egitimdescArr, egitimtimeArr, egitimlevelArr, engAnswer.replace("'",""), found]
+    result = [question.replace("'",""), airesponse.replace("'","").replace('"',''), egitimheaderArr, egitimdescArr, egitimtimeArr, egitimlevelArr, engAnswer.replace("'",""), found]
 
     # sorulan soruları kaydetmek için loga yolla
     QuestionLog(db, question, airesponse, egitimheaderArr, egitimdescArr, içerikDescriptions)

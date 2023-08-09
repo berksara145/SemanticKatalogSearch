@@ -35,14 +35,14 @@ def CreateEmbeddingsDatabase():
 # eğitimler ve açıklamalarını döndürüyor csvden
 def readEğitimDesc():
 
-    df_embeddings = pd.read_csv('egitimDesc1000.csv')    
+    df_embeddings = pd.read_csv('newCSVs/egitimDesc1000~.csv', sep="~")    
     print(df_embeddings.head())
     print(df_embeddings.shape)
 
     return df_embeddings
 # içerik açıklama embedlerini döndürüyor csvden
 def readEmbeddings():
-    df_embeddings = pd.read_csv('embeddedİçerik761.csv')    
+    df_embeddings = pd.read_csv('newCSVs/embeddedİçerik761.csv')    
     print(df_embeddings.head())
     print(df_embeddings.shape)
 
@@ -101,7 +101,7 @@ def CreateEğitimler():
         print(i)
         item = {'id'     : i,
                 'header' : row['header'],
-                'desc' : row['Desc'],
+                'desc' : row['desc'],
                 'time' : row['time'],
                 'level' : row['level']
             }
@@ -144,4 +144,5 @@ CreateEmbeddingsVectorIndex()
 CreateEğitimler()
 CreateMatchingTable()
 """
+
 

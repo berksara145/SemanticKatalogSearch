@@ -6,7 +6,7 @@ from dotenv import load_dotenv, find_dotenv
 def get_info(
         input: str,
         path: str=None,
-        model: str="gpt-3.5-turbo",
+        model: str="gpt-4",
         temperature: float=0.0
     ) -> dict:
 
@@ -45,7 +45,7 @@ def get_prompt(input: str) -> str:
     Minimum eğitim süresi: Eğitim videosunun dakika olarak en az ne kadar süre 
     uzunlukta olması gerektiğini yaz. Örneğin '1-2 saatlik 
     videolar istiyorum.' dediyse '60' yaz. Müşteri alt sınır belirtmemişse 
-    '0' yaz. Eğer eğitim süresine dair bir 
+    '0' yaz. Sayısal bir süre değeri bulamazsan da cümlenin anlamından yaklaşık bir süre çıkar. Eğer eğitim süresine dair bir 
     bilgi verilmediyse, '-' yaz. Mesela 'Videoların ne kadar 
     sürdüğü önemli değil.' dediyse '-' yaz. Müşteri eğitim süresi için 
     spesifik bir süre belirttiyse, o süreyi yaz. Örneğin '50 dakikalık eğitimler istiyorum.' 

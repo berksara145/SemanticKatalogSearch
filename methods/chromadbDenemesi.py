@@ -12,12 +12,15 @@ OPENAI_ORG_ID = "org-EZyyXoEzlXEW5aYgXath8T1K"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 client = chromadb.PersistentClient(path=r"C:\Users\berk.sara\Documents\GitHub\azureDeneme\temp")
+#client = chromadb.HttpClient(host='20.168.252.4', port=443)
+#a = client.get_version()
 
 openai_ef = embedding_functions.OpenAIEmbeddingFunction(
                 api_key=OPENAI_API_KEY,
                 model_name="text-embedding-ada-002"
             )
 
+collection = client.get_collection(name="col", embedding_function=openai_ef)
 #name = "col"
 def createCollection(name):
     client.create_collection(name=name,metadata={"hnsw:space": "cosine"} ,embedding_function=openai_ef)
@@ -87,6 +90,7 @@ def queryChroma(question):
     print(result['documents'][0])
     return result['ids'][0]
 
+
 #print(collection.peek()) # returns a list of the first 10 items in the collection
 #print(collection.count()) # returns the number of items in the collection
 
@@ -97,5 +101,4 @@ def queryChroma(question):
 
 #query("ruhani yönümü geliştirmek istiyorum")
 
-collection = client.get_collection(name="col", embedding_function=openai_ef)
 #queryChroma("javascript eğitimi")
