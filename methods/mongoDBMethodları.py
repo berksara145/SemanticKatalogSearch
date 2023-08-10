@@ -153,4 +153,8 @@ CreateEğitimler()
 CreateMatchingTable()
 """
 
+client = pymongo.MongoClient(MONGO_CONNECTION_STRING )
+db=client[DATABASE_ID]
+db.create_collection("helo")
+
 

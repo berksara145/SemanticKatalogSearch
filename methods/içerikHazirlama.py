@@ -22,12 +22,12 @@ method to upload the vectors
 vector search
 a system to convert the incoming vector result id from içerik to id via tables (arrays)
 testing using 12 eğitim with 300 içerik (galiba) and determining if it works good
-google translate integration with api (fuk)
+google translate integration with api 
 """
 
 # içerik ve ait olduğu eğitimler ve açıklamalarla dolu büyük tablo
 def readCSV():
-    data = pd.read_csv('newCSVs/IcerikKatalog761.csv',  sep=',')
+    data = pd.read_csv('IcerikKatalog761.csv',  sep=',')
     print(data.head())
     print(data.shape)
     print("read the data \n")
@@ -115,5 +115,4 @@ def getİçerikDescriptions(idArray):
         matchingİçerikArr.append(içerikArr[int(i) - 1])
     return matchingİçerikArr
 
-
-#data = readCSV()
+data = readCSV()
