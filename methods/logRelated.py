@@ -53,6 +53,4 @@ def export_logs_to_csv():
 
     print("Logs exported to logsForGPT.csv successfully!")
 
-# Call the function to export logs to CSV
-LoadEnvVariables()
 export_logs_to_csv()

@@ -1,3 +1,4 @@
+"""
 # importing sqlite3 module
 import sqlite3
 import pandas as pd
@@ -281,3 +282,4 @@ def EgiitmAciklamaAll():
 createIcerikKatalogSQL()
 
 connection.close()
+"""
