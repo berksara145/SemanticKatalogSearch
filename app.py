@@ -273,6 +273,7 @@ def question_logs():
     return render_template('index.html')
 """
 
+
 @app.route("/chat")
 def chat():
     chatWithGPT4()
