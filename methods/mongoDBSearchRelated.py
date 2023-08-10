@@ -8,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import json
 import requests
 from methods.içerikHazirlama import getİçerikDescriptions
-from methods.chromadbDenemesi import queryChroma
+#from methods.chromadbDenemesi import queryChroma
 from methods.extract_Info import get_info
 import googletrans.client as c
 

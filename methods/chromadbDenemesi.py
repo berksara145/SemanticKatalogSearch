@@ -1,3 +1,4 @@
+"""
 import chromadb
 import openai
 from chromadb.utils import embedding_functions
@@ -111,3 +112,5 @@ def queryChroma(question):
 #query("ruhani yönümü geliştirmek istiyorum")
 
 #queryChroma("javascript eğitimi")
+
+"""

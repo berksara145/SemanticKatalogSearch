@@ -27,7 +27,9 @@ google translate integration with api
 
 # içerik ve ait olduğu eğitimler ve açıklamalarla dolu büyük tablo
 def readCSV():
-    data = pd.read_csv('IcerikKatalog761.csv',  sep=',')
+    BASEDIR = os.path.abspath(os.path.dirname(__file__))
+    
+    data = pd.read_csv(os.path.join(BASEDIR, 'IcerikKatalog761.csv'),  sep=',')
     print(data.head())
     print(data.shape)
     print("read the data \n")
