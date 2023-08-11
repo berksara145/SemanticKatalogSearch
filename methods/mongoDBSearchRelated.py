@@ -276,7 +276,7 @@ def Answer(question):
     else:
         found = False
         filtered_items.append(found_items[0])
-        filtered_items.append( findclosestTimeEgitim(found_items, minTime=int(minTime), maxTime=int(maxTime)) )
+        filtered_items.append( findclosestTimeEgitim(found_items, minTime=minTime, maxTime=maxTime) )
         closestLevelEgitim = findclosestLevelEgitim(found_items, level=level)
         if(closestLevelEgitim != "not found"):
             filtered_items.append(closestLevelEgitim)
@@ -379,13 +379,23 @@ def findclosestTimeEgitim(found_items, minTime, maxTime):
     closestItem = None
     min_difference = float('inf')
     
+    if(minTime == "-"):
+        minTime = 0
+    else:
+        minTime = int(minTime)
+
+    if(maxTime == "-"):
+        maxTime = 99999
+    else:
+        maxTime = int(maxTime)
+
     for item in found_items:
         itemTime = int(item["time"])
-
+        difference = 0
         if minTime > itemTime: 
             difference = minTime - itemTime
 
-        if maxTime < itemTime: 
+        if maxTime <= itemTime: 
             difference = itemTime - maxTime
 
         if difference < min_difference:
