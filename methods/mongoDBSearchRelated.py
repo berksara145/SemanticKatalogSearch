@@ -395,18 +395,3 @@ def translateApi(text):
     print(response.text)
     return response.text
 
-def find_closest_video_duration(video_durations, min_interval, max_interval):
-    closest_video = None
-    min_difference = float('inf')
-
-    for duration in video_durations:
-        
-        if min_interval <= duration <= max_interval:
-
-            difference = abs(duration - (min_interval + max_interval) / 2)
-
-            if difference < min_difference:
-                min_difference = difference
-                closest_video = duration
-
-    return closest_video

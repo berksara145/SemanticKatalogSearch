@@ -36,7 +36,9 @@ def export_logs_to_csv():
 
     # Load existing IDs from the CSV file to a set
     existing_ids = set()
+    
     csv_path = os.path.join(BASEDIR, 'logsForGPT.csv')
+    print(csv_path)
     if os.path.exists(csv_path):
         existing_df = pd.read_csv(csv_path)
         existing_ids = set(existing_df['_id'].apply(str))  # Convert ObjectIDs to strings

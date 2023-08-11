@@ -58,16 +58,16 @@ def get_prompt(input: str) -> str:
     bilgi verilmediyse, '-' yaz. Mesela 'Videoların ne kadar 
     sürdüğü önemli değil.' dediyse '-' yaz. Müşteri eğitim süresi için 
     spesifik bir süre belirttiyse, o süreyi yaz. Örneğin '50 dakikalık eğitimler istiyorum.' 
-    dediyse, '50' yaz.
+    dediyse, '50' yaz. 
 
     Maksimum eğitim süresi: Eğitim videosunun dakika olarak en çok ne kadar süre 
     uzunlukta olması gerektiğini yaz. Örneğin müşteri '1-2 saatlik 
     videolar istiyorum.' dediyse '120' yaz. Örneğin 'En çok 3 saatlik 
-    videolar istiyorum.' dediyse '180' yaz. Müşteri alt sınır belirtmemişse 
-    'inf' yaz. Eğer eğitim süresine dair bir 
-    bilgi verilmediyse, '-' yaz. Müşteri eğitim süresi için 
+    videolar istiyorum.' dediyse '180' yaz. Müşteri eğitim süresi için 
     spesifik bir süre belirttiyse, o süreyi yaz. Örneğin '50 dakikalık eğitimler istiyorum.' 
-    dediyse, '50' yaz.
+    dediyse, '50' yaz. Eğer müşterinin cümlesinde bir olayı ne kadar sürede yaptığını belirten bir ifade varsa bunu sayısal değere çevir. 
+    Örneğin: 'bir basket maçı süresi kadar eğitim ver' dediyse üst limiti 90 yap
+    Eğer eğitim süresine dair bir bilgi verilmediyse, '-' yaz.
 
     Eğitim seviyesi: Eğitim videosunun hangi seviyede olması gerektiğini yaz. 
     3 seviye var: Başlangıç, Orta ve İleri. Örneğin müşteri 'İleri seviyede eğitimler 
