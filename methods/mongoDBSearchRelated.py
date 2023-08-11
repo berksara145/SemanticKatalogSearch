@@ -277,7 +277,9 @@ def Answer(question):
         found = False
         filtered_items.append(found_items[0])
         filtered_items.append( findclosestTimeEgitim(found_items, minTime=int(minTime), maxTime=int(maxTime)) )
-        filtered_items.append( findclosestLevelEgitim(found_items, level=level) )
+        closestLevelEgitim = findclosestLevelEgitim(found_items, level=level)
+        if(closestLevelEgitim != "not found"):
+            filtered_items.append(closestLevelEgitim)
 
         print('filter didn\'t work')
 
@@ -313,6 +315,9 @@ def Answer(question):
     egitimlevelArr = []
 
     index = 0
+    print("debug")
+    print(filtered_items)
+    print(len(filtered_items))
     for i in filtered_items:
         egitimheaderArr.append(filtered_items[index]['header'].replace("'",""))
         egitimdescArr.append(filtered_items[index]['desc'].replace("'",""))
